@@ -1,4 +1,3 @@
-import React from "react";
 import { FaUsers, FaUserTie, FaUser, FaHome, FaBuilding, FaHotel } from "react-icons/fa";
 
 const Dashboard = () => {
