@@ -86,7 +86,7 @@ const TenanteditProfile = () => {
       // If successful, navigate to profile page
       navigate('/user/tenantProfile');
     } catch (err) {
-      setError('Failed to connect to server');
+      setError('Failed to connect to server',err);
     } finally {
       setLoading(false);
     }

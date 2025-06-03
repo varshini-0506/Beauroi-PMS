@@ -5,7 +5,7 @@ import './index.css'
 import Sidemenu from './Sidemenu'
 import Signin from './Signin'
 import { Tenant } from './Tenant/Tenant'
-import Lease from './Lease/LeasePage'
+//import Lease from './Lease/LeasePage'
 import LeaseNotifications from "./Lease/LeaseNotifications";
 import Property from "./Property/Property";
 import TenantProfile from './Tenant/TenantProfile'
@@ -27,6 +27,7 @@ import TenantOffboarding from './Tenant/TenantOffboarding';
 import TenantAdmin from './Tenant/TenantAdmin';
 import PropertyManager from './Property/Propertymanager';
 import PropertyUser from './Property/propertyuser';
+import AdminLeaseView from './Lease/AdminLeaseView';
 
 const App=()=>{
   const location = useLocation();
@@ -40,6 +41,7 @@ const App=()=>{
     "/user/tenantBoarding",
     "/user/propertymanager",
     "/user/accountantlist",
+    "/user/adminlease"
   ];
 
   const tenantPages = [
@@ -81,10 +83,9 @@ const Router = createBrowserRouter([
         element: <RequestForm /> 
       },
       {
-        path: "lease",
-        element: <Lease />,
+        path: "adminlease",
+        element: <AdminLeaseView />,
       },
-      
       {
         path: "leasenotifications",
         element: <LeaseNotifications />,

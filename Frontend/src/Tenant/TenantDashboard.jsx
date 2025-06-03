@@ -21,8 +21,8 @@ const TenantDashboard = () => {
   };
 
   const quickLinks = [
-    { name: 'Pay Rent', icon: <CreditCard size={20} />, path: '/tenant/payments' },
-    { name: 'Maintenance', icon: <Wrench size={20} />, path: '/tenant/maintenance' },
+    { name: 'Pay Rent', icon: <CreditCard size={20} />, path: '/user/payment' },
+    { name: 'Maintenance', icon: <Wrench size={20} />, path: '/user/requestform' },
     { name: 'Lease Details', icon: <Home size={20} />, path: '/tenant/lease' },
   ];
 
@@ -31,7 +31,7 @@ const TenantDashboard = () => {
       {/* Header */}
       <div className="mb-8 animate-fade-in-up">
         <h1 className="text-3xl font-bold text-[#4F46E5]">Welcome, Tenant!</h1>
-        <p className="text-[#6B7280] mt-1">Here's what's happening with your property</p>
+        <p className="text-[#6B7280] mt-1">Here&#39;s what&#39;s happening with your property</p>
       </div>
 
       {/* Main Content */}
@@ -65,7 +65,7 @@ const TenantDashboard = () => {
             </div>
           </div>
           <a
-            href="/tenant/payments"
+            href="/user/payment"
             className="mt-6 w-full flex items-center justify-between p-3 rounded-lg bg-[#E0E7FF] hover:bg-[#4F46E5] text-[#4F46E5] hover:text-white transition-colors duration-300"
           >
             <span>Pay Now</span>

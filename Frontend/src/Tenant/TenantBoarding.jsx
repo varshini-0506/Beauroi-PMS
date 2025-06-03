@@ -53,7 +53,7 @@ const TenantBoarding = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", minHeight: "100vh", p: 4, marginLeft: "0px" }}>
+    <Box sx={{ width: "100%", minHeight: "100vh", p: 4, marginLeft: "250px" }}>
       <Paper elevation={3} sx={{ maxWidth: "1200px", mx: "auto", p: 5, bgcolor: "#ffffff", borderRadius: 3, boxShadow: 5 }}>
         <Typography variant="h4" sx={{ color: "#1976d2", mb: 4, fontWeight: "bold", textAlign: "center" }}>
           Tenant Onboarding

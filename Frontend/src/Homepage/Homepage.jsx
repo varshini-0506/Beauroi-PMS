@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiHome, FiUsers, FiDollarSign } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";

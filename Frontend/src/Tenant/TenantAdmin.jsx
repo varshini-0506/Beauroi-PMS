@@ -10,11 +10,11 @@ const TenantAdmin = () => {
       icon: <UserPlus className="h-6 w-6" />,
       link:"/user/tenantBoarding"
     },
-    {
+     {
       title: "Active Leases",
       description: "See all currently active leases.",
       icon: <FileText className="h-6 w-6" />,
-      onClick: () => console.log("Navigate to active leases")
+      link: "/user/adminlease", 
     },
     {
       title: "Expiring Soon",
@@ -25,7 +25,7 @@ const TenantAdmin = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] to-[#F3F4F6] p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] to-[#F3F4F6] p-8 ml-[250px]">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-10">
           <div>

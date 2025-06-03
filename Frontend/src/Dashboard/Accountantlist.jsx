@@ -25,7 +25,7 @@ const AccountantList = () => {
   };
 
   return (
-    <div className=" p-8 w-full bg-gray-50 min-h-screen transition-all">
+    <div className=" p-8 w-full bg-gray-50 min-h-screen transition-all ml-[250px]">
       <div className="bg-white shadow-xl rounded-2xl p-8 transition-transform hover:scale-[1.01] duration-300 ease-in-out">
         <h2 className="text-3xl font-bold text-slate-700 mb-8 flex items-center gap-3">
           <FaUserTie className="text-indigo-600 text-3xl" />

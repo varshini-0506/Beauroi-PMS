@@ -6,9 +6,10 @@ import {
   LogOut,
   Bell,
 } from 'lucide-react';
+import { useLocation, Link } from 'react-router-dom';
 
 const TenantSidebar = () => {
-  const activeItem = 'Dashboard';
+  const location = useLocation();
 
   const menuItems = [
     { name: 'Dashboard', icon: <Home size={20} />, path: '/user/tenantDashboard' },
@@ -29,27 +30,29 @@ const TenantSidebar = () => {
       {/* Menu Items */}
       <nav className="mt-4">
         <ul>
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.path}
-                className={`flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full ${
-                  activeItem === item.name
-                    ? 'bg-[#E0E7FF] text-[#4F46E5]'
-                    : 'text-[#374151] hover:bg-[#F3F4F6]'
-                }`}
-              >
-                <span
-                  className={`mr-3 ${
-                    activeItem === item.name ? 'text-[#4F46E5]' : 'text-[#6366F1]'
+          {menuItems.map((item) => {
+            const isActive = location.pathname === item.path;
+
+            return (
+              <li key={item.name}>
+                <Link
+                  to={item.path}
+                  className={`flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full ${
+                    isActive ? 'bg-[#E0E7FF] text-[#4F46E5]' : 'text-[#374151] hover:bg-[#F3F4F6]'
                   }`}
                 >
-                  {item.icon}
-                </span>
-                <span className="font-medium">{item.name}</span>
-              </a>
-            </li>
-          ))}
+                  <span
+                    className={`mr-3 ${
+                      isActive ? 'text-[#4F46E5]' : 'text-[#6366F1]'
+                    }`}
+                  >
+                    {item.icon}
+                  </span>
+                  <span className="font-medium">{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </div>
