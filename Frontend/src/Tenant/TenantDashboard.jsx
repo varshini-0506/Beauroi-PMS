@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   CreditCard,
   Bell,
@@ -8,16 +9,44 @@ import {
 } from 'lucide-react';
 
 const TenantDashboard = () => {
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const leaseCreated = true;
+    const leaseRenewed = true;
+
+    const dynamicNotifications = [];
+
+    if (leaseCreated) {
+      dynamicNotifications.push({
+        id: Date.now(),
+        message: '✅ New lease created for 123 Blue St!',
+        unread: true,
+      });
+    }
+
+    if (leaseRenewed) {
+      dynamicNotifications.push({
+        id: Date.now() + 1,
+        message: '📄 Lease renewed successfully for Unit 4.',
+        unread: true,
+      });
+    }
+
+    dynamicNotifications.push({
+      id: Date.now() + 2,
+      message: '📅 Reminder: Rent due in 5 days.',
+      unread: false,
+    });
+
+    setNotifications(dynamicNotifications);
+  }, []);
+
   const tenantData = {
     rentDue: 'April 1, 2025',
     rentAmount: '$1,200',
     rentStatus: 'Pending',
     leaseEnd: 'December 31, 2025',
-    notifications: [
-      { id: 1, message: 'Rent due in 5 days', unread: true },
-      { id: 2, message: 'Maintenance scheduled for March 28', unread: false },
-      { id: 3, message: 'Community event on April 5', unread: true },
-    ],
   };
 
   const quickLinks = [
@@ -31,7 +60,7 @@ const TenantDashboard = () => {
       {/* Header */}
       <div className="mb-8 animate-fade-in-up">
         <h1 className="text-3xl font-bold text-[#4F46E5]">Welcome, Tenant!</h1>
-        <p className="text-[#6B7280] mt-1">Here&#39;s what&#39;s happening with your property</p>
+        <p className="text-[#6B7280] mt-1">Here's what's happening with your property</p>
       </div>
 
       {/* Main Content */}
@@ -138,15 +167,17 @@ const TenantDashboard = () => {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-[#374151]">Recent Notifications</h2>
           <div className="flex items-center">
-            <span className="mr-2 text-sm text-[#6B7280]">{tenantData.notifications.filter(n => n.unread).length} unread</span>
+            <span className="mr-2 text-sm text-[#6B7280]">
+              {notifications.filter((n) => n.unread).length} unread
+            </span>
             <div className="p-2 rounded-lg bg-[#D1FAE5] text-[#10B981]">
               <Bell size={20} />
             </div>
           </div>
         </div>
         <ul className="space-y-3">
-          {tenantData.notifications.length > 0 ? (
-            tenantData.notifications.map((notification) => (
+          {notifications.length > 0 ? (
+            notifications.map((notification) => (
               <li
                 key={notification.id}
                 className={`p-4 rounded-lg transition-all duration-300 flex items-center ${
@@ -169,7 +200,7 @@ const TenantDashboard = () => {
           )}
         </ul>
         <a
-          href="/tenant/notifications"
+          href="/user/tenantNotifications"
           className="mt-4 inline-flex items-center text-[#4F46E5] hover:text-[#6366F1] transition-colors duration-300"
         >
           View all notifications

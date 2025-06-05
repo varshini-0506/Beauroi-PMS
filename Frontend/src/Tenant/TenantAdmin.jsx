@@ -25,7 +25,7 @@ const TenantAdmin = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] to-[#F3F4F6] p-8 ml-[250px]">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] to-[#F3F4F6] p-8 ml-[250px] w-full">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-10">
           <div>

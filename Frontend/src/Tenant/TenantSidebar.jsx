@@ -16,7 +16,7 @@ const TenantSidebar = () => {
     { name: 'Profile', icon: <User size={20} />, path: '/user/tenantProfile' },
     { name: 'Payments', icon: <CreditCard size={20} />, path: '/user/payment' },
     { name: 'Maintenance', icon: <Wrench size={20} />, path: '/user/requestform' },
-    { name: 'Notifications', icon: <Bell size={20} />, path: '/tenant/notifications' },
+    { name: 'Notifications', icon: <Bell size={20} />, path: '/user/tenantNotifications' },
     { name: 'Logout', icon: <LogOut size={20} />, path: '/signin' },
   ];
 

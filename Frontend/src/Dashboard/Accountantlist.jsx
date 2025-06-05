@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FaSearch, FaUserTie, FaEdit, FaTrash } from 'react-icons/fa';
 
 const initialAccountants = [
-  { id: 1, name: "John Doe", email: "john@mail.com", contact: "7775552214", image: "https://via.placeholder.com/40", status: "Active" },
-  { id: 2, name: "Jane Smith", email: "jane@mail.com", contact: "7896547855", image: "https://via.placeholder.com/40", status: "Inactive" },
-  { id: 3, name: "Robert Johnson", email: "robert@mail.com", contact: "9856321470", image: "https://via.placeholder.com/40", status: "Active" },
-  { id: 4, name: "Emily Clark", email: "emily@mail.com", contact: "8765432190", image: "https://via.placeholder.com/40", status: "Active" },
-  { id: 5, name: "Michael Brown", email: "michael@mail.com", contact: "7654321890", image: "https://via.placeholder.com/40", status: "Inactive" },
-  { id: 6, name: "Sophia Wilson", email: "sophia@mail.com", contact: "6543210987", image: "https://via.placeholder.com/40", status: "Active" }
+  { id: 1, name: "John Doe", email: "john@mail.com", contact: "7775552214", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_female.jfif?updatedAt=1742465364791", status: "Active" },
+  { id: 2, name: "Jane Smith", email: "jane@mail.com", contact: "7896547855", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_make.jfif?updatedAt=1742465364781", status: "Inactive" },
+  { id: 3, name: "Robert Johnson", email: "robert@mail.com", contact: "9856321470", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_female.jfif?updatedAt=1742465364791", status: "Active" },
+  { id: 4, name: "Emily Clark", email: "emily@mail.com", contact: "8765432190", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_make.jfif?updatedAt=1742465364781", status: "Active" },
+  { id: 5, name: "Michael Brown", email: "michael@mail.com", contact: "7654321890", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_make.jfif?updatedAt=1742465364781", status: "Inactive" },
+  { id: 6, name: "Sophia Wilson", email: "sophia@mail.com", contact: "6543210987", image: "https://ik.imagekit.io/varsh0506/Beauroi/profile_female.jfif?updatedAt=1742465364791", status: "Active" }
 ];
 
 const AccountantList = () => {

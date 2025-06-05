@@ -34,8 +34,6 @@ const LeaseForm = ({ addLease }) => {
         const data = await response.json();
         addLease(data.lease);
         alert("Lease added successfully!");
-        
-        // Reset form fields
         setTenantName("");
         setStartDate("");
         setEndDate("");
@@ -64,7 +62,7 @@ const LeaseForm = ({ addLease }) => {
   return (
     <div className="text-center">
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        className="bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#6366F1] transition"
         onClick={() => setOpen(true)}
       >
         Add Lease
@@ -72,59 +70,60 @@ const LeaseForm = ({ addLease }) => {
 
       {open && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
-          <div className="bg-white p-6 rounded-2xl shadow-xl w-11/12 max-w-md">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Add Lease</h2>
+          <div className="bg-white p-6 rounded-2xl shadow-xl w-11/12 max-w-md border border-[#E0E7FF]">
+            <h2 className="text-xl font-bold mb-4 text-[#374151]">Add Lease</h2>
 
             {/* Tenant Name */}
             <div className="relative mb-3">
               <input
                 type="text"
                 placeholder="Tenant Name"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
                 value={tenantName}
                 onChange={(e) => setTenantName(e.target.value)}
               />
             </div>
 
-            {/* Lease Start Date */}
+            {/* Start Date */}
             <div className="relative mb-3">
               <FaCalendarAlt className="absolute left-3 top-4 text-gray-500" />
               <input
                 type="date"
-                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
 
-            {/* Lease End Date */}
+            {/* End Date */}
             <div className="relative mb-3">
               <FaCalendarAlt className="absolute left-3 top-4 text-gray-500" />
               <input
                 type="date"
-                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
               />
             </div>
 
+            {/* Property Address */}
             <div className="relative mb-3">
               <input
                 type="text"
                 placeholder="Property Address"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
                 value={propertyAddress}
                 onChange={(e) => setPropertyAddress(e.target.value)}
               />
             </div>
 
-            {/* Lease Agreement Upload (PDF) */}
+            {/* Agreement Upload */}
             <div className="relative mb-3">
               <FaFilePdf className="absolute left-3 top-4 text-red-500" />
               <input
                 type="text"
                 placeholder={agreement ? agreement.name : "Upload Lease Agreement (PDF)"}
-                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5] cursor-pointer"
                 readOnly
                 onClick={() => document.getElementById("pdfUpload").click()}
               />
@@ -137,13 +136,13 @@ const LeaseForm = ({ addLease }) => {
               />
             </div>
 
-            {/* Property Image Upload (JPG/PNG) */}
+            {/* Image Upload */}
             <div className="relative mb-3">
-              <FaImage className="absolute left-3 top-4 text-blue-500" />
+              <FaImage className="absolute left-3 top-4 text-indigo-500" />
               <input
                 type="text"
                 placeholder={propertyImage ? propertyImage.name : "Upload Property Image (JPG/PNG)"}
-                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                className="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5] cursor-pointer"
                 readOnly
                 onClick={() => document.getElementById("imageUpload").click()}
               />
@@ -156,15 +155,16 @@ const LeaseForm = ({ addLease }) => {
               />
             </div>
 
+            {/* Buttons */}
             <div className="flex justify-between mt-4">
               <button
-                className="px-4 py-2 border border-gray-500 text-gray-700 rounded-lg hover:bg-gray-100"
+                className="px-4 py-2 border border-[#4F46E5] text-[#4F46E5] rounded-lg hover:bg-[#E0E7FF] transition"
                 onClick={() => setOpen(false)}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="px-4 py-2 bg-[#4F46E5] text-white rounded-lg hover:bg-[#6366F1] transition"
                 onClick={handleAdd}
               >
                 Add

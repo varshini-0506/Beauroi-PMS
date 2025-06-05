@@ -9,7 +9,6 @@ const LeaseCard = ({ lease, updateLease }) => {
   const formattedStartDate = moment(lease.startDate).format("MMMM DD, YYYY");
   const formattedEndDate = moment(lease.endDate).format("MMMM DD, YYYY");
 
-  // Handle Lease Renewal
   const handleRenewLease = async () => {
     if (!newEndDate) return;
     try {
@@ -24,7 +23,6 @@ const LeaseCard = ({ lease, updateLease }) => {
     }
   };
 
-  // Handle Lease Termination
   const handleTerminateLease = async () => {
     try {
       await axios.put(`http://localhost:5000/leases/${lease._id}`, {
@@ -37,22 +35,24 @@ const LeaseCard = ({ lease, updateLease }) => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 transition-transform transform hover:shadow-lg hover:scale-105">
+    <div className="bg-white shadow-md rounded-xl p-6 transition-transform transform hover:shadow-lg hover:scale-105 border border-[#E0E7FF]">
       <div className="flex items-center gap-4">
         {lease.propertyImage && (
           <img
             src={`data:image/png;base64,${lease.propertyImage}`}
             alt="Property"
-            className="w-24 h-24 rounded-lg object-cover"
+            className="w-24 h-24 rounded-lg object-cover border border-[#E0E7FF]"
           />
         )}
         <div className="flex-1">
-          <h2 className="text-lg font-bold text-gray-800">{lease.tenantName}</h2>
-          <p className="text-sm text-gray-600">Start: {formattedStartDate}</p>
-          <p className="text-sm text-gray-600">End: {formattedEndDate}</p>
-          <p className="text-sm text-gray-600">Property Address: {lease.propertyAddress || "N/A"}</p>
+          <h2 className="text-lg font-bold text-[#374151]">{lease.tenantName}</h2>
+          <p className="text-sm text-[#6B7280]">Start: {formattedStartDate}</p>
+          <p className="text-sm text-[#6B7280]">End: {formattedEndDate}</p>
+          <p className="text-sm text-[#6B7280]">
+            Property Address: {lease.propertyAddress || "N/A"}
+          </p>
           <p
-            className={`text-sm font-bold ${
+            className={`text-sm font-semibold mt-1 ${
               lease.status === "Active" ? "text-green-600" : "text-red-600"
             }`}
           >
@@ -64,7 +64,7 @@ const LeaseCard = ({ lease, updateLease }) => {
               download="Lease_Agreement.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline mt-2 inline-block"
+              className="text-[#4F46E5] underline mt-2 inline-block hover:text-[#6366F1]"
             >
               View Agreement
             </a>
@@ -72,15 +72,15 @@ const LeaseCard = ({ lease, updateLease }) => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 space-x-2">
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#6366F1] transition"
           onClick={() => setShowRenew(true)}
         >
           Renew
         </button>
         <button
-          className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+          className="bg-[#E0E7FF] text-[#4F46E5] px-4 py-2 rounded-lg hover:bg-[#6366F1] hover:text-white transition"
           onClick={handleTerminateLease}
         >
           Terminate
@@ -88,15 +88,15 @@ const LeaseCard = ({ lease, updateLease }) => {
       </div>
 
       {showRenew && (
-        <div className="mt-4 border-t pt-3">
+        <div className="mt-4 border-t border-[#E5E7EB] pt-3">
           <input
             type="date"
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-[#E0E7FF] rounded mb-2 text-[#374151] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
             value={newEndDate}
             onChange={(e) => setNewEndDate(e.target.value)}
           />
           <button
-            className="bg-green-600 text-white px-4 py-2 rounded-lg w-full hover:bg-green-700"
+            className="bg-[#6366F1] text-white px-4 py-2 rounded-lg w-full hover:bg-[#4F46E5] transition"
             onClick={handleRenewLease}
           >
             Confirm Renewal

@@ -31,10 +31,9 @@ const AdminLeaseView = () => {
   };
 
   return (
-    <div className="bg-[#FAFAFA] min-h-screen w-full p-6 text-[#374151]">
-      <h1 className="text-3xl font-bold mb-6 text-[#4F46E5]">Lease Management</h1>
-
-      <div className="mb-8 bg-white p-4 rounded-md shadow border-l-4 border-[#4F46E5]">
+    <div className="bg-[#FAFAFA] min-h-screen w-full p-6 text-[#374151] ml-[250px]">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-[#4F46E5]">Lease Management</h1>
         <LeaseForm addLease={addLease} />
       </div>
 

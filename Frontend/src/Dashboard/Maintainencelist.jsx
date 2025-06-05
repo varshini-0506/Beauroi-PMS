@@ -1,111 +1,78 @@
-import { motion } from "framer-motion";
-import { CheckCircle, Hourglass, XCircle } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
-const MaintenanceList = ({ maintenanceRequests = [] }) => {
-  const statusIcons = {
-    Pending: <Hourglass className="text-[#6366F1]" size={20} />,
-    InProgress: (
-      <Hourglass className="text-[#4F46E5] animate-spin" size={20} />
-    ),
-    Completed: <CheckCircle className="text-[#10B981]" size={20} />,
-    Cancelled: <XCircle className="text-[#EF4444]" size={20} />,
-  };
+const MaintenanceList = () => {
+  const [maintenances, setMaintenances] = useState([]);
 
-  const statusColors = {
-    Pending: "border-[#6366F1] text-[#6366F1]",
-    InProgress: "border-[#4F46E5] text-[#4F46E5]",
-    Completed: "border-[#10B981] text-[#10B981]",
-    Cancelled: "border-[#EF4444] text-[#EF4444]",
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/maintenances");
+        const data = await response.json();
+        setMaintenances(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  if (maintenanceRequests.length === 0) {
-    maintenanceRequests = [
-      {
-        id: 1,
-        title: "Leaky Faucet",
-        description: "Kitchen sink faucet is leaking continuously.",
-        tenantName: "John Doe",
-        status: "Pending",
-      },
-      {
-        id: 2,
-        title: "Broken AC Unit",
-        description: "Air conditioner not working in living room.",
-        tenantName: "Jane Smith",
-        status: "InProgress",
-      },
-      {
-        id: 3,
-        title: "Electrical Issue",
-        description: "Power outage in the bedroom area.",
-        tenantName: "Alice Johnson",
-        status: "Completed",
-      },
-      {
-        id: 4,
-        title: "Clogged Drain",
-        description: "Bathroom drain is clogged and not draining water.",
-        tenantName: "Bob Brown",
-        status: "Cancelled",
-      },
-    ];
-  }
+    fetchData();
+  }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="p-6 max-w-5xl mx-auto bg-[#FAFAFA] min-h-screen"
-    >
-      <h2 className="text-3xl font-bold mb-6 text-[#4F46E5]">
-        Maintenance Requests
-      </h2>
+    <div className="min-h-screen bg-[#FAFAFA] p-6 ml-[250px]">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        {/* Page Title */}
+        <h2 className="text-4xl font-bold text-center mb-10 text-[#4F46E5] tracking-tight">
+          Maintenance Requests
+        </h2>
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: {
-            transition: {
-              staggerChildren: 0.1,
-            },
-          },
-        }}
-      >
-        {maintenanceRequests.map((request) => (
-          <motion.div
-            key={request.id}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            whileHover={{ scale: 1.015 }}
-            transition={{ type: "spring", stiffness: 120 }}
-            className="bg-white rounded-2xl shadow-sm p-6 mb-4 transition duration-300 flex flex-col sm:flex-row justify-between gap-4 hover:shadow-md"
-          >
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold text-[#374151]">
-                {request.title}
+        {/* Grid of Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {maintenances.map((item) => (
+            <div
+              key={item._id}
+              className="bg-[#E0E7FF] rounded-2xl shadow-sm p-6 border border-[#D1D5DB] transition-transform hover:scale-[1.02] hover:shadow-md"
+            >
+              <h3 className="text-xl font-semibold text-black mb-3">
+                {item.name}
               </h3>
-              <p className="text-gray-500">{request.description}</p>
-              <p className="text-sm text-gray-400 mt-2">
-                Requested by: {request.tenantName}
-              </p>
+              <div className="text-sm text-black space-y-1">
+                <p>
+                  <span className="font-semibold text-[#6366F1]">Type:</span>{" "}
+                  {item.requestType}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#6366F1]">
+                    Description:
+                  </span>{" "}
+                  {item.description}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#6366F1]">Contact:</span>{" "}
+                  {item.contact}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#6366F1]">Email:</span>{" "}
+                  {item.email}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#6366F1]">Location:</span>{" "}
+                  {item.location}
+                </p>
+                <p className="text-xs text-gray-700 pt-2">
+                  Submitted: {new Date(item.createdAt).toLocaleString()}
+                </p>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              {statusIcons[request.status]}
-              <span
-                className={`text-sm border px-3 py-1 rounded-full font-medium ${statusColors[request.status]}`}
-              >
-                {request.status}
-              </span>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.div>
+          ))}
+        </div>
+
+        {maintenances.length === 0 && (
+          <p className="text-center mt-10 text-gray-500 text-lg">
+            No maintenance requests found.
+          </p>
+        )}
+      </div>
+    </div>
   );
 };
 

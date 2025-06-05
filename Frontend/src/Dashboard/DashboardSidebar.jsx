@@ -7,6 +7,7 @@ import {
   FaBuilding,
   FaComments,
   FaInfoCircle,
+  FaChartPie,
 } from 'react-icons/fa';
 import { LogOut } from 'lucide-react';
 
@@ -80,22 +81,9 @@ const DashboardSidebar = () => {
               </ul>
             )}
           </li>
-
           <li>
             <Link
-              to="#"
-              className="flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full text-[#374151] hover:bg-[#F3F4F6]"
-            >
-              <span className="mr-3 text-[#6366F1]">
-                <FaCity />
-              </span>
-              <span className="font-medium">State & City</span>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="#"
+              to="/user/propertymanager"
               className="flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full text-[#374151] hover:bg-[#F3F4F6]"
             >
               <span className="mr-3 text-[#6366F1]">
@@ -104,31 +92,17 @@ const DashboardSidebar = () => {
               <span className="font-medium">Property</span>
             </Link>
           </li>
-
           <li>
             <Link
-              to="#"
+              to="/user/adminreport"
               className="flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full text-[#374151] hover:bg-[#F3F4F6]"
             >
               <span className="mr-3 text-[#6366F1]">
-                <FaComments />
+                <FaChartPie />
               </span>
-              <span className="font-medium">Contact & Feedback</span>
+              <span className="font-medium">Reports & Analytics</span>
             </Link>
           </li>
-
-          <li>
-            <Link
-              to="#"
-              className="flex items-center px-6 py-3 transition-colors duration-200 rounded-r-full text-[#374151] hover:bg-[#F3F4F6]"
-            >
-              <span className="mr-3 text-[#6366F1]">
-                <FaInfoCircle />
-              </span>
-              <span className="font-medium">About Page</span>
-            </Link>
-          </li>
-
           <li className="mt-6">
             <Link
               to="/signin"

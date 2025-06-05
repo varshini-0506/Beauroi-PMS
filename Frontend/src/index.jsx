@@ -28,6 +28,8 @@ import TenantAdmin from './Tenant/TenantAdmin';
 import PropertyManager from './Property/Propertymanager';
 import PropertyUser from './Property/propertyuser';
 import AdminLeaseView from './Lease/AdminLeaseView';
+import TenantNotifications from './Tenant/TenantNotifications';
+import ReportsAnalytics from './Dashboard/ReportsAnalytics';
 
 const App=()=>{
   const location = useLocation();
@@ -41,7 +43,8 @@ const App=()=>{
     "/user/tenantBoarding",
     "/user/propertymanager",
     "/user/accountantlist",
-    "/user/adminlease"
+    "/user/adminlease",
+    "/user/adminreport"
   ];
 
   const tenantPages = [
@@ -51,7 +54,8 @@ const App=()=>{
     "/user/tenanteditProfile",
     "/user/tenantOffboarding",
     "/user/payment",
-    "/user/requestform"
+    "/user/requestform",
+    "/user/tenantNotifications",
   ];
 
   return(
@@ -156,6 +160,14 @@ const Router = createBrowserRouter([
      {
       path:"tenantAdmin",
       element:<TenantAdmin/>
+     },
+      {
+      path:"tenantNotifications",
+      element:<TenantNotifications/>
+     },
+      {
+      path:"adminreport",
+      element:<ReportsAnalytics/>
      }
     ],
   },

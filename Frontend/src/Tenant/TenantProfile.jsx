@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Card, Avatar, Typography, Box, Divider, Button, CircularProgress, Fade, Grow, Slide } from "@mui/material";
 import { Phone, Email, House, Payment, CalendarToday, Pets, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -255,17 +256,18 @@ const TenantProfile = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 5, flexDirection: { xs: 'column', md: 'row' } }}>
                 <Box sx={{ flex: 1 }}>
-                  <img 
-                    src={lease.propertyImage} 
-                    alt="Property" 
-                    style={{ 
-                      width: '100%', 
-                      height: '250px', 
-                      objectFit: 'cover', 
-                      borderRadius: '12px',
-                      boxShadow: `0 4px 12px ${colors.secondary}`
-                    }} 
-                  />
+  <img 
+    src="https://ik.imagekit.io/varsh0506/Beauroi/property_beauroi.jpg?updatedAt=1739859016563"
+    alt="Property" 
+    style={{
+      width: '100%', 
+      height: '250px', 
+      objectFit: 'cover', 
+      borderRadius: '12px',
+      boxShadow: `0 4px 12px ${colors.secondary}`
+    }} 
+  />
+
                 </Box>
                 <Box sx={{ 
                   display: 'flex', 

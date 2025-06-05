@@ -62,21 +62,17 @@ const roleToModel = {
   accountant: Accountant,
 };
 
-// Maintenance Schema & Model
-const Maintenance = mongoose.model(
-  "maintenance",
-  new mongoose.Schema(
-    {
-      name: { type: String, required: true },
-      location: { type: String, required: true },
-      problem: { type: String, required: true },
-      phone: { type: String, required: true },
-      email: { type: String, required: true },
-      requestType: { type: String, required: true },
-    },
-    { timestamps: true }
-  )
-);
+// ✅ Fixed: Maintenance Schema & Model
+const maintenanceSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  requestType: { type: String, required: true }, // e.g., property, lease, payment
+  description: { type: String, required: true },
+  contact: { type: String, required: true },
+  email: { type: String, required: true },
+  location: { type: String, required: true },
+}, { timestamps: true });
+
+const Maintenance = mongoose.model("Maintenance", maintenanceSchema);
 
 // Property Schema & Model
 const PropertySchema = new mongoose.Schema(
@@ -192,31 +188,42 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-app.post("/submit-maintenance", async (req, res) => {
+app.post("/api/maintenances", async (req, res) => {
   try {
-    const { name, location, problem, phone, email, requestType } = req.body;
+    const { name, requestType, description, contact, email, location } = req.body;
 
-    if (!name || !location || !problem || !phone || !email || !requestType) {
+    // Validate required fields
+    if (!name || !requestType || !description || !contact || !email || !location) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
     const newMaintenance = new Maintenance({
       name,
-      location,
-      problem,
-      phone,
-      email,
       requestType,
+      description,
+      contact,
+      email,
+      location,
     });
 
     await newMaintenance.save();
 
-    res
-      .status(201)
-      .json({ message: "Maintenance request submitted successfully" });
+    res.status(201).json({ message: "Maintenance request submitted successfully" });
   } catch (error) {
     console.error("❌ Maintenance Error:", error);
     res.status(500).json({ error: "Maintenance submission failed" });
+  }
+});
+
+// ✅ You can also optionally add a GET route to fetch all maintenance requests
+// GET all maintenance requests
+app.get("/api/maintenances", async (req, res) => {
+  try {
+    const maintenances = await Maintenance.find().sort({ createdAt: -1 }); // latest first
+    res.status(200).json(maintenances);
+  } catch (error) {
+    console.error("❌ Fetch Error:", error);
+    res.status(500).json({ error: "Failed to fetch maintenance data" });
   }
 });
 
